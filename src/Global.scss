@@ -1,0 +1,41 @@
+@import "Mixins";
+
+*{
+    box-sizing: border-box;
+}
+
+body {
+    @include flex;
+    padding: 0;
+    margin: 0;
+
+    background-color: $color1a;
+    color: $color2a;
+
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: $fontsize3;
+    
+    overflow: hidden;
+}
+
+.App{
+    @include flex;
+    height: 100vh;
+}
+
+*::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background-color: #8885;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #fff3;
+    border-radius: 999px;
+}
+
+*::selection {
+    color: var(--colorBody);
+    background: var(--colorBright);
+}

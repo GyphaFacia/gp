@@ -1,0 +1,252 @@
+$color1a: var(--color1a); $color2a: var(--color2a); $color3a: var(--color3a);
+$color1b: var(--color1b); $color2b: var(--color2b); $color3b: var(--color3b);
+$color1c: var(--color1c); $color2c: var(--color2c); $color3c: var(--color3c);
+$color1d: var(--color1d); $color2d: var(--color2d); $color3d: var(--color3d);
+$color1e: var(--color1e); $color2e: var(--color2e); $color3e: var(--color3e);
+$color1f: var(--color1f); $color2f: var(--color2f); $color3f: var(--color3f);
+
+$shadow1: var(--shadow1);
+$shadow2: var(--shadow2);
+$shadow3: var(--shadow3);
+$shadow4: var(--shadow4);
+$shadow5: var(--shadow5);
+$shadow6: var(--shadow6);
+$shadow7: var(--shadow7);
+$shadow8: var(--shadow8);
+$shadow9: var(--shadow9);
+
+$fontsize1: var(--fontsize1); $fontsize1r: var(--fontsize1r);
+$fontsize2: var(--fontsize2); $fontsize2r: var(--fontsize2r);
+$fontsize3: var(--fontsize3); $fontsize3r: var(--fontsize3r);
+$fontsize4: var(--fontsize4); $fontsize4r: var(--fontsize4r);
+$fontsize5: var(--fontsize5); $fontsize5r: var(--fontsize5r);
+$fontsize6: var(--fontsize6); $fontsize6r: var(--fontsize6r);
+$fontsize7: var(--fontsize7); $fontsize7r: var(--fontsize7r);
+$fontsize8: var(--fontsize8); $fontsize8r: var(--fontsize8r);
+$fontsize9: var(--fontsize9); $fontsize9r: var(--fontsize9r);
+
+$offset1: var(--offset1); $offset1r: var(--offset1r);
+$offset2: var(--offset2); $offset2r: var(--offset2r);
+$offset3: var(--offset3); $offset3r: var(--offset3r);
+$offset4: var(--offset4); $offset4r: var(--offset4r);
+$offset5: var(--offset5); $offset5r: var(--offset5r);
+$offset6: var(--offset6); $offset6r: var(--offset6r);
+$offset7: var(--offset7); $offset7r: var(--offset7r);
+$offset8: var(--offset8); $offset8r: var(--offset8r);
+$offset9: var(--offset9); $offset9r: var(--offset9r);
+
+$bodyHeight: var(--bodyHeight);
+$headerHeight: var(--headerHeight);
+$navHeight: var(--navHeight);
+$footerHeight: var(--footerHeight);
+$mainHeight: var(--mainHeight);
+
+$bodyWidth: var(--bodyWidth);
+$headerWidth: var(--headerWidth);
+$navWidth: var(--navWidth);
+$footerWidth: var(--footerWidth);
+$mainWidth: var(--mainWidth);
+
+$bodyZ: var(--bodyZ);
+$headerZ: var(--headerZ);
+$navZ: var(--navZ);
+$footerZ: var(--footerZ);
+$mainZ: var(--mainZ);
+
+$time1: var(--time1);
+$time2: var(--time2);
+$time3: var(--time3);
+$time4: var(--time4);
+$time5: var(--time5);
+$time6: var(--time6);
+$time7: var(--time7);
+$time8: var(--time8);
+
+
+@mixin flex($justifyContent: center, $alignItems:center, $flexDirection: row) {
+    display: flex;
+    justify-content: $justifyContent;
+    align-items: $alignItems;
+    flex-direction: $flexDirection;
+}
+
+@mixin flexV($justifyContent: flex-start, $alignItems:center, $flexDirection: column) {
+    @include flex($justifyContent, $alignItems, $flexDirection);
+}
+
+@mixin flexB($justifyContent: space-between, $alignItems:center, $flexDirection: row) {
+    @include flex($justifyContent, $alignItems, $flexDirection);
+}
+
+@mixin rect($res){
+    width: $res;
+    height: $res;
+}
+
+@mixin circle{
+    border-radius: 100vmax;
+}
+
+@mixin center{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin bevelSym($bevel: 0px){
+    $c: calc(100% - #{$bevel});
+    $cN: $bevel;
+    
+    clip-path: polygon(
+        0% $cN,
+        $cN 0%,
+        $c 0%,
+        100% $cN,
+        100% $c,
+        $c 100%,
+        $cN 100%,
+        0% $c,
+    )
+}
+
+@mixin bevelAsym($bevelTL: 0px, $bevelTR: 0px, $bevelBR: 0px, $bevelBL: 0px){
+    $bevel: 0px;
+    
+    $c: calc(100% - #{$bevel});
+    $cN: $bevel;
+    
+    $cTL: calc(100% - #{$bevelTL});
+    $cTR: calc(100% - #{$bevelTR});
+    $cBR: calc(100% - #{$bevelBR});
+    $cBL: calc(100% - #{$bevelBL});
+    
+    $cTLN: $bevelTL;
+    $cTRN: $bevelTR;
+    $cBRN: $bevelBR;
+    $cBLN: $bevelBL;
+    
+    clip-path: polygon(
+        0% $cTLN,
+        $cTLN 0%,
+        $cTR 0%,
+        100% $cTRN,
+        100% $cBR,
+        $cBR 100%,
+        $cBLN 100%,
+        0% $cBL,
+    )
+}
+
+@mixin bevelBorder($width: 1px, $bevel: 0px){
+    $c: calc(100% - #{$bevel});
+    $cN: $bevel;
+    
+    $bevel2: calc(#{$bevel} - #{$width} / 2);
+    $i: $width;
+    $iN: calc(#{$width} + #{$bevel2});
+    $oN: calc(100% - #{$width} - #{$bevel2});
+    $o: calc(100% - #{$width});
+    
+    clip-path: polygon(
+        0% $cN,
+        $cN 0%,
+        $c 0%,
+        100% $cN,
+        100% $c,
+        $c 100%,
+        $cN 100%,
+        0% $c,
+        
+        $i $oN,
+        $iN $o,
+        $oN $o,
+        $o $oN,
+        $o $iN,
+        $oN $i,
+        $iN $i,
+        $i $iN,
+        $i $oN,
+        
+        0% $c
+    )
+}
+
+@mixin bevelBorderAsym($width: 1px, $bevelTL: 0px, $bevelTR: 0px, $bevelBR: 0px, $bevelBL: 0px){
+    $bevel: 0px;
+    
+    $c: calc(100% - #{$bevel});
+    $cN: $bevel;
+    
+    $cTL: calc(100% - #{$bevelTL});
+    $cTR: calc(100% - #{$bevelTR});
+    $cBR: calc(100% - #{$bevelBR});
+    $cBL: calc(100% - #{$bevelBL});
+    
+    $cTLN: $bevelTL;
+    $cTRN: $bevelTR;
+    $cBRN: $bevelBR;
+    $cBLN: $bevelBL;
+    
+    $bevel_TL: calc(#{$bevelTL} - #{$width} / 2);
+    $bevel_TR: calc(#{$bevelTR} - #{$width} / 2);
+    $bevel_BR: calc(#{$bevelBR} - #{$width} / 2);
+    $bevel_BL: calc(#{$bevelBL} - #{$width} / 2);
+    $bevel2: calc(#{$bevel} - #{$width} / 2);
+    
+    $i: $width;
+    $iN: calc(#{$width} + #{$bevel2});
+    $oN: calc(100% - #{$width} - #{$bevel2});
+    $o: calc(100% - #{$width});
+    
+    $iTL: $width;
+    $iTLN: calc(#{$width} + #{$bevel_TL});
+    $oTL: calc(100% - #{$width});
+    $oTLN: calc(100% - #{$width} - #{$bevel_TL});
+    
+    $iTR: $width;
+    $iTRN: calc(#{$width} + #{$bevel_TR});
+    $oTR: calc(100% - #{$width});
+    $oTRN: calc(100% - #{$width} - #{$bevel_TR});
+    
+    $iBR: $width;
+    $iBRN: calc(#{$width} + #{$bevel_BR});
+    $oBR: calc(100% - #{$width});
+    $oBRN: calc(100% - #{$width} - #{$bevel_BR});
+    
+    $iBL: $width;
+    $iBLN: calc(#{$width} + #{$bevel_BL});
+    $oBL: calc(100% - #{$width});
+    $oBLN: calc(100% - #{$width} - #{$bevel_BL});
+    
+    clip-path: polygon(
+        0% $cTLN,
+        $cTLN 0%,
+        $cTR 0%,
+        100% $cTRN,
+        100% $cBR,
+        $cBR 100%,
+        $cBLN 100%,
+        0% $cBL,
+        
+        $iBL $oBLN,
+        $iBLN $oBL,
+        $oBRN $oBR,
+        $oBR $oBRN,
+        $oTR $iTRN,
+        $oTRN $iTR,
+        $iTLN $iTL,
+        $iTL $iTLN,
+        $iBL $oBLN,
+        
+        0% $cBL
+    )
+}
+
+
+
+
+
+
+
+
