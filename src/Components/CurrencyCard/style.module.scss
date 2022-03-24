@@ -24,7 +24,9 @@
     &Percent{
         @include flexB;
 
-        // & > 
+        & svg{
+            margin-right: $offset3;
+        }
     }
 
 

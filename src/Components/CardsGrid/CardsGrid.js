@@ -1,15 +1,58 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import style from './style.module.scss'
 import {dateFormat} from 'API'
 import CurrencyCard from '../CurrencyCard/CurrencyCard'
 import { motion } from 'framer-motion'
+import { apiReducer } from 'Reducers'
+
+function ApiError(){
+    const dispatch = useDispatch()
+    const {data, shift} = useSelector(store => store.api)
+
+    function getClosestDate(){
+        let best = 0
+        for(let i = -10; i <= 0; i++){
+            let d = data[dateFormat(i)]?.Valute
+            if(d && Math.abs(shift - best) > Math.abs(shift - i)){
+                best = i
+            }
+        }
+
+        return best
+    }
+
+    getClosestDate()
+
+    return (
+        <motion.div
+        className = {style.Error}
+        initial = {{
+            opacity: 0,
+            x: '100vw',
+        }}
+        animate = {{
+            opacity: 1,
+            x: 0,
+        }}
+        transition = {{duration: 0.5}}
+        >
+            <div>Курс ЦБ РФ на данную дату не установлен.</div>
+            <div>Ближайшая дата:</div>
+            <button
+            onClick = {()=>{
+                dispatch(apiReducer.setShift(getClosestDate()))
+            }}
+            className = {style.ErrorBtn}
+            >{dateFormat(getClosestDate())}</button>
+        </motion.div>
+    )
+}
 
 export default function CardsGrid(){
     const {data, shift} = useSelector(store => store.api)
 
     function getCurrentData(){
-        const usd = data[dateFormat(shift)]?.Valute?.USD?.Value
         return data[dateFormat(shift)]?.Valute ?? false
     }
 
@@ -40,20 +83,7 @@ export default function CardsGrid(){
                     </motion.div>
                 ))
             :
-                <motion.div
-                className = {style.Error}
-                initial = {{
-                    opacity: 0,
-                    x: '100vw',
-                }}
-                animate = {{
-                    opacity: 1,
-                    x: 0,
-                }}
-                transition = {{duration: 0.5}}
-                >
-                    Курс ЦБ РФ на данную дату не установлен.
-                </motion.div>
+                <ApiError/>
             }
         </main>
     )

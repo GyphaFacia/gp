@@ -13,8 +13,31 @@
 }
 
 .Error{
-    font-size: $fontsize9;
-    background-color: #fff1;
-    padding: $offset5;
+    @include flexV;
     @include circle;
+    font-size: $fontsize9;
+
+    &Btn{
+        @include circle;
+        padding: $offset3r;
+        margin-top: $offset9;
+        background: none;
+        border: none;
+        color: inherit;
+        font-size: inherit;
+
+        $off: $offset1r;
+        $offm: calc(#{$off} * -1);
+        box-shadow:
+            $off $off $off 0 #000a inset,
+            $offm $offm $off 0 #fff2 inset;
+        border: 3px solid $color2c;
+
+        cursor: pointer;
+
+        transition-duration: $time2;
+        &:hover{
+            border-color: $color2a;
+        }
+    }
 }
