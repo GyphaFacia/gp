@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import './Global.scss';
+import {setTheme} from 'Theme'
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'
+import DateWidget from './Components/DateWidget/DateWidget';
+import CurrencyCard from './Components/CurrencyCard/CurrencyCard';
+
+const x = {
+    "USD": {
+        "ID": "R01235",
+        "NumCode": "840",
+        "CharCode": "USD",
+        "Nominal": 1,
+        "Name": "Доллар США",
+        "Value": 103.9524,
+        "Previous": 104.8012
+    }
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    useEffect(() => {
+        const API = 'https://www.cbr-xml-daily.ru'
+        const URL = `${API}/daily_json.js`
+        // axios.get(URL)
+        // .then(({data}) => {
+        //     console.log(data)
+        // })
+    }, [])
+
+    return (
+        <div className="App">
+            {/* <DateWidget/> */}
+            <CurrencyCard
+            abbr = {'USD'}
+            data = {x['USD']}
+            />
+        </div>
+    )
 }
 
 export default App;

@@ -1,0 +1,37 @@
+@import "Mixins";
+
+.DateWidget{
+    @include flex;
+    font-size: $fontsize4;
+
+    &Date{
+        &Container{
+            @include flex;
+            width: 125px;
+            height: 30px;
+            overflow: hidden;
+        }
+    }
+
+    &Button{
+        @include rect($offset5);
+        @include flex;
+        @include circle;
+        background: none;
+        color: $color2b;
+        margin: $offset2;
+        border: 3px solid $color2b;
+        cursor: pointer;
+
+        transition-duration: $time1;
+        &:hover{
+            transform: scale(1.1);
+            border-color: $color2a;
+            color: $color2a;
+        }
+        &:active{
+            transform: scale(0.9);
+        }
+    }
+    
+}

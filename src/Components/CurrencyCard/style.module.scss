@@ -1,0 +1,38 @@
+@import "Mixins";
+
+.CurrencyCard{
+    $res: 200px;
+
+    &, &::after, &Bloom{
+        @include rect($res);
+    }
+
+    @include flex(space-around, center, column);
+    @include bevelAsym(10px, 25px, 10px, 25px);
+    padding: $offset1 $offset9;
+    font-size: $fontsize5;
+
+    &Code{
+        font-size: $fontsize9;
+    }
+
+    &Value{
+        white-space: nowrap;
+    }
+
+    &Percent{
+
+    }
+
+
+    position: relative;
+    &::after, &Bloom{
+        content: "";
+        @include center;
+    }
+
+    &::after{
+        @include bevelBorderAsym(3px, 10px, 25px, 10px, 25px);
+        background: linear-gradient(135deg, $color2a, $color3a);
+    }
+}
