@@ -1,8 +1,8 @@
 import React from 'react'
 import style from './style.module.scss'
-import {motion} from 'framer-motion'
 import { useDispatch } from 'react-redux'
 import {tooltipReducer} from 'Reducers'
+import {FaSortDown, FaSortUp} from 'react-icons/fa'
 
 function TooltipWrapper(props){
     const dispatch = useDispatch()
@@ -10,7 +10,10 @@ function TooltipWrapper(props){
 
     function handleMouseEnter(e){
         dispatch(tooltipReducer.setVisible(true))
-        dispatch(tooltipReducer.setTooltip(props.data.Name))
+        let res = props.data.Nominal
+        res = res == 1 ? '' : res
+        res += ' ' + props.data.Name
+        dispatch(tooltipReducer.setTooltip(res))
     }
 
     function handleMouseLeave(e){
@@ -98,9 +101,11 @@ export default function CurrencyCard({data}){
     const prec = (val, precision = 100) => Math.round(val * precision)/precision
 
     function calcGrowth(precision = 100){
-        let res = 100 - data.Value/data.Previous * 100
+        let res = (data.Previous - data.Value)/data.Value*100
         return prec(res)
     }
+
+    const GrowOrFall = data.Value > data.Previous ? FaSortUp : FaSortDown
 
     return (
         <TooltipWrapper
@@ -118,7 +123,10 @@ export default function CurrencyCard({data}){
             >{prec(data.Value)} руб.</span>
             <span
             className = {style.CurrencyCardPercent}
-            >{calcGrowth()}%</span>
+            >
+                <GrowOrFall/>
+                {calcGrowth()}%
+            </span>
         </div>
         </HoveringWrapper>
         </TooltipWrapper>

@@ -1,9 +1,7 @@
 import './Global.scss';
 import {setTheme} from 'Theme'
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
 import DateWidget from './Components/DateWidget/DateWidget';
-import CurrencyCard from './Components/CurrencyCard/CurrencyCard';
 import Tooltip from './Components/Tooltip/Tooltip';
 
 import {apiReducer} from 'Reducers'
