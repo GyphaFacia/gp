@@ -1,6 +1,6 @@
 import React from 'react'
 import style from './style.module.scss'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {tooltipReducer} from 'Reducers'
 import {FaSortDown, FaSortUp} from 'react-icons/fa'
 
@@ -41,6 +41,7 @@ const MIN_FRICT = 0
 const MAX_FRICT = 500
 const FRICT_DELTA = 50
 function HoveringWrapper(props){
+    const {viewMode} = useSelector(store => store.view)
     const [cursor, setCursor] = React.useState({x: 0, y: 0})
     const hoverRef = React.useRef()
     const [frict, setFrict] = React.useState(500)
@@ -53,6 +54,7 @@ function HoveringWrapper(props){
     }, [])
 
     function handleMouseMove(e){
+        if(viewMode != 'grid'){return false}
         const {clientX, clientY} = e
         const {left, top, width, height} = hoverRef.current.getBoundingClientRect()
         let layerX = (clientX - left)/width*100
@@ -65,6 +67,7 @@ function HoveringWrapper(props){
     }
 
     function handleMouseEnter(e){
+        if(viewMode != 'grid'){return false}
         if(delay != null){ clearTimeout(delay) }
         setFrict(500)
         setDelay(setInterval(() => {
@@ -73,6 +76,7 @@ function HoveringWrapper(props){
     }
 
     function handleMouseLeave(e){
+        if(viewMode != 'grid'){return false}
         if(delay != null){ clearTimeout(delay) }
         setFrict(500)
         setCursor({x:0, y:0})
@@ -96,9 +100,10 @@ function HoveringWrapper(props){
     )
 }
 
-const defaultPos = {x: 25, y: 25}
-export default function CurrencyCard({data}){
+export default function CurrencyCard(props){
+    const {viewMode} = useSelector(store => store.view)
     const prec = (val, precision = 100) => Math.round(val * precision)/precision
+    const data = props.data
 
     function calcGrowth(precision = 100){
         let res = (data.Previous - data.Value)/data.Value*100
@@ -107,13 +112,21 @@ export default function CurrencyCard({data}){
 
     const GrowOrFall = data.Value < data.Previous ? FaSortUp : FaSortDown
 
+    function getClassName(){
+        const classList = [style.CurrencyCard]
+        if(viewMode != 'grid'){
+            classList.push(style.CurrencyCardWide)
+        }
+        return classList.join(' ')
+    }
+
     return (
         <TooltipWrapper
         data = {data}
         >
         <HoveringWrapper>
         <div
-        className = {style.CurrencyCard}
+        className = {getClassName()}
         >
             <span
             className = {style.CurrencyCardCode}

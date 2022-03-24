@@ -1,0 +1,21 @@
+@import "Mixins";
+
+.ViewSwitch{
+    background: none;
+    border: none;
+    color: $color2a;
+    font-size: $fontsize6;
+    @include rect($offset6);
+    @include circle;
+    @include flex;
+    border: 3px solid $color2a;
+    cursor: pointer;
+
+    transition-duration: $time1;
+    &:hover{
+        transform: scale(1.1);
+    }
+    &:active{
+        transform: scale(0.9);
+    }
+}

@@ -1,8 +1,10 @@
 import './Global.scss';
 import {setTheme} from 'Theme'
 import React, {useState, useEffect} from 'react'
+
 import DateWidget from './Components/DateWidget/DateWidget';
 import Tooltip from './Components/Tooltip/Tooltip';
+import ViewSwitch from './Components/ViewSwitch/ViewSwitch';
 
 import {apiReducer} from 'Reducers'
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,6 +39,7 @@ function App() {
                 className = 'header-content'
                 >
                     <DateWidget/>
+                    <ViewSwitch/>
                 </aside>
             </header>
 

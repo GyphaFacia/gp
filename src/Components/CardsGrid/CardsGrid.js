@@ -51,6 +51,7 @@ function ApiError(){
 
 export default function CardsGrid(){
     const {data, shift} = useSelector(store => store.api)
+    const {viewMode} = useSelector(store => store.view)
 
     function getCurrentData(){
         return data[dateFormat(shift)]?.Valute ?? false
@@ -75,6 +76,9 @@ export default function CardsGrid(){
                     }}
                     transition = {{
                         delay: i/25,
+                    }}
+                    style = {{
+                        margin: viewMode == 'grid' ? 'var(--offset5)' : 'var(--offset2)'
                     }}
                     >
                         <CurrencyCard

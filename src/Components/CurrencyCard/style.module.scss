@@ -41,4 +41,22 @@
         background: linear-gradient(135deg, $color2a, $color3b);
         transition-duration: $time2;
     }
+
+    &Wide{
+        &, &::after{
+            width: 80vw;
+            height: $offset6r;
+            @include flexB;
+        }
+        &::after{
+            @include bevelBorderAsym(3px, 5px, 15px, 5px, 15px);
+        }
+        @include bevelAsym(5px, 15px, 5px, 15px);
+
+        font-size: $fontsize5;
+
+        & *{
+            font-size: inherit;
+        }
+    }
 }
