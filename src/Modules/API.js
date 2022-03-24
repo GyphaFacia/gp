@@ -8,15 +8,23 @@ export async function getStoredData(shift){
 }
 
 export function readStorage(shift){
-    const old = localStorage.getItem(dateFormat())
+    const old = localStorage.getItem(dateFormat(shift))
     if(old == null){ return null }
     return JSON.parse(old)
 }
 
 export async function writeStorage(shift){
-    const data = await fetchApi(shift)
-    localStorage.setItem(dateFormat(), JSON.stringify(data))
-    return data
+    try {
+        const data = await fetchApi(shift)
+        localStorage.setItem(dateFormat(), JSON.stringify(data))
+        return data    
+    } catch (error) {
+        console.warn(error)
+        const data = {error: 'No data'}
+        localStorage.setItem(dateFormat(), JSON.stringify(data))
+        return data
+    }
+    
 }
 
 export function dateFormat(shift = 0){

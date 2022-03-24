@@ -105,7 +105,7 @@ export default function CurrencyCard({data}){
         return prec(res)
     }
 
-    const GrowOrFall = data.Value > data.Previous ? FaSortUp : FaSortDown
+    const GrowOrFall = data.Value < data.Previous ? FaSortUp : FaSortDown
 
     return (
         <TooltipWrapper
@@ -124,8 +124,12 @@ export default function CurrencyCard({data}){
             <span
             className = {style.CurrencyCardPercent}
             >
-                <GrowOrFall/>
-                {calcGrowth()}%
+                <GrowOrFall
+                style = {{
+                    transform: `translateY(${data.Value > data.Previous ? -15 : 30}%)`
+                }}
+                />
+                {`${calcGrowth()}`.replace('-', '')}%
             </span>
         </div>
         </HoveringWrapper>

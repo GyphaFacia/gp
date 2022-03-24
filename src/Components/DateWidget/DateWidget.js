@@ -2,8 +2,11 @@ import React from 'react'
 import style from './style.module.scss'
 import {AiOutlineDoubleRight, AiOutlineDoubleLeft} from 'react-icons/ai'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useDispatch, useSelector } from 'react-redux'
+import {apiReducer} from 'Reducers'
 
 function DateWidgetDate({day, leftOrRight}){
+
     function getDateString(){
         const d = new Date(new Date().setDate(new Date().getDate() + day))
         return `${d.getDate()}
@@ -37,13 +40,14 @@ function DateWidgetDate({day, leftOrRight}){
 }
 
 export default function DateWidget(){
-    const [day, setDay] = React.useState(0)
+    const dispatch = useDispatch()
+    const day = useSelector(store => store.api.shift)
     const [leftOrRight, setLeftOrRight] = React.useState(true)
 
     function handleClick(delta){
         setLeftOrRight(delta > 0)
         setTimeout(()=>{
-            setDay(prev => prev + delta)
+            dispatch(apiReducer.setShift(day + delta))
         }, 0)
     }
 

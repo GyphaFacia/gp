@@ -11,3 +11,10 @@
         margin: $offset5;
     }
 }
+
+.Error{
+    font-size: $fontsize9;
+    background-color: #fff1;
+    padding: $offset5;
+    @include circle;
+}
