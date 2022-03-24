@@ -5,7 +5,7 @@
 }
 
 body {
-    @include flex;
+    @include flexV;
     padding: 0;
     margin: 0;
 
@@ -19,7 +19,7 @@ body {
 }
 
 .App{
-    @include flex;
+    @include flexV;
     height: 100vh;
 }
 
