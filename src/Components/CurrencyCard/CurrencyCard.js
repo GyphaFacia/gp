@@ -61,7 +61,7 @@ function HoveringWrapper(props){
 }
 
 const defaultPos = {x: 25, y: 25}
-export default function CurrencyCard({abbr, data}){
+export default function CurrencyCard({data}){
     const prec = (val, precision = 100) => Math.round(val * precision)/precision
 
     function calcGrowth(precision = 100){
