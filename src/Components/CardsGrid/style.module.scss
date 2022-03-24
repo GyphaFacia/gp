@@ -5,8 +5,9 @@
     flex-wrap: wrap;
     max-height: calc(100vh - #{$offset9});
     overflow: hidden auto;
+    padding-top: $offset6;
 
     & > *{
-        margin: $offset4;
+        margin: $offset5;
     }
 }

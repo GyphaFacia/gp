@@ -1,0 +1,14 @@
+@import "Mixins";
+
+.Tooltip{
+    @include circle;
+    position: absolute;
+    transform: translate(-50%, 50%);
+    padding: $offset2;
+    pointer-events: none;
+    background-color: $color1a;
+    font-size: $fontsize4;
+    z-index: 1000;
+    box-shadow: 0 0 5px 0 $color2a;
+    white-space: nowrap;
+}

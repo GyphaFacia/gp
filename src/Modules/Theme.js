@@ -10,6 +10,7 @@ export const darkTheme = {
     $color2c: 'hsl(40, 10%, 50%)',
     
     $color3a: 'hsl(40, 100%, 50%)',
+    $color3b: 'hsl(40, 50%, 50%)',
     
     $shadow1: '#000a',
     $shadow2: '#fff4',

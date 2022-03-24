@@ -4,7 +4,7 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import DateWidget from './Components/DateWidget/DateWidget';
 import CurrencyCard from './Components/CurrencyCard/CurrencyCard';
-import { getSelectionRange } from '@testing-library/user-event/dist/utils';
+import Tooltip from './Components/Tooltip/Tooltip';
 
 import {apiReducer} from 'Reducers'
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,6 +28,20 @@ function App() {
     return (
         <div className="App"
         >
+            <Tooltip/>
+            <header
+            className = 'header'
+            >
+                <section
+                className = 'header-whitespace'
+                />
+                <aside
+                className = 'header-content'
+                >
+                    <DateWidget/>
+                </aside>
+            </header>
+
             <CardsGrid/>
         </div>
     )

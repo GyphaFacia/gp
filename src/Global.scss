@@ -23,6 +23,25 @@ body {
     height: 100vh;
 }
 
+
+.header{
+    &, &-whitespace, &-content{
+        width: 100vw;
+        height: $offset9;
+    }
+
+    &-content{
+        position: fixed;
+        top: 0;
+        left: 0;
+        @include flexB;
+        padding: $offset2;
+
+        box-shadow: 0 0 50px 0 #000;
+    }
+}
+
+
 *::-webkit-scrollbar {
     width: 7px;
     height: 7px;

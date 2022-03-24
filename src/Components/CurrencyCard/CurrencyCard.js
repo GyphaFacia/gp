@@ -1,5 +1,38 @@
 import React from 'react'
 import style from './style.module.scss'
+import {motion} from 'framer-motion'
+import { useDispatch } from 'react-redux'
+import {tooltipReducer} from 'Reducers'
+
+function TooltipWrapper(props){
+    const dispatch = useDispatch()
+    const ttipRef = React.useRef(null)
+
+    function handleMouseEnter(e){
+        dispatch(tooltipReducer.setVisible(true))
+        dispatch(tooltipReducer.setTooltip(props.data.Name))
+    }
+
+    function handleMouseLeave(e){
+        dispatch(tooltipReducer.setVisible(false))
+    }
+
+    function handleMouseMove(e){
+        const {clientX, clientY} = e
+        dispatch(tooltipReducer.setPos({x: clientX, y: clientY}))
+    }
+
+    return (
+        <div
+        onMouseEnter = {handleMouseEnter}
+        onMouseLeave = {handleMouseLeave}
+        onMouseMove = {handleMouseMove}
+        ref = {ttipRef}
+        {...props}
+        />
+    )
+}
+
 
 const MIN_FRICT = 0
 const MAX_FRICT = 500
@@ -70,6 +103,9 @@ export default function CurrencyCard({data}){
     }
 
     return (
+        <TooltipWrapper
+        data = {data}
+        >
         <HoveringWrapper>
         <div
         className = {style.CurrencyCard}
@@ -85,5 +121,6 @@ export default function CurrencyCard({data}){
             >{calcGrowth()}%</span>
         </div>
         </HoveringWrapper>
+        </TooltipWrapper>
     )
 }
