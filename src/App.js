@@ -5,6 +5,7 @@ import React, {useState, useEffect} from 'react'
 import DateWidget from './Components/DateWidget/DateWidget';
 import Tooltip from './Components/Tooltip/Tooltip';
 import ViewSwitch from './Components/ViewSwitch/ViewSwitch';
+import Details from './Components/Details/Details';
 
 import {apiReducer} from 'Reducers'
 import { useDispatch, useSelector } from 'react-redux';
@@ -43,7 +44,10 @@ function App() {
                 </aside>
             </header>
 
-            <CardsGrid/>
+            <div className = 'main-container'>
+                <Details/>
+                <CardsGrid/>
+            </div>
         </div>
     )
 }

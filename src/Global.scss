@@ -41,6 +41,11 @@ body {
     }
 }
 
+.main-container{
+    @include flex;
+    align-items: flex-start;
+}
+
 
 *::-webkit-scrollbar {
     width: 7px;

@@ -1,0 +1,72 @@
+@import "Mixins";
+
+.Details{
+    background-color: $color1a;
+    overflow: hidden auto;
+    padding: $offset5;
+    box-shadow: 0 60px 50px 0 #000;
+
+    min-width: 33vw;
+    max-width: 33vw;
+    height: 100vh;
+
+    @include flexV;
+
+    position: relative;
+    &CloseBtn{
+        position: absolute;
+        top: 0;
+        left: 100%;
+        transform: translate(-125%, 50%);
+        @include rect($offset6);
+        @include circle;
+        @include flex;
+        background: none;
+        color: inherit;
+        border: none;
+        font-size: $fontsize7;
+        border: 2px solid $color2a;
+
+        transition-duration: $time1;
+        cursor: pointer;
+        &:hover{
+            transform: translate(-125%, 50%) scale(1.1);
+        }
+        &:active{
+            transform: translate(-125%, 50%) scale(0.9);
+        }
+    }
+
+    & > *{
+        margin-bottom: $offset7;
+    }
+
+    &Fullname{
+        font-size: $fontsize6;
+        font-weight: 900;
+    }
+
+    &Table{
+        @include flexV;
+        width: 100%;
+        &Line{
+            margin: $offset2 0;
+            width: 100%;
+            @include flexB;
+
+            & i{
+                padding-left: $offset3;
+            }
+
+            &NoData{
+                @include flex;
+                width: 100%;
+                transform: scaleX(1000%);
+            }
+
+            &Value{
+                @include flex;
+            }
+        }
+    }
+}

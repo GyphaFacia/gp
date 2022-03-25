@@ -3,7 +3,7 @@ import style from './style.module.scss'
 import {AiOutlineDoubleRight, AiOutlineDoubleLeft} from 'react-icons/ai'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useDispatch, useSelector } from 'react-redux'
-import {apiReducer} from 'Reducers'
+import {apiReducer, detailsReducer} from 'Reducers'
 
 function DateWidgetDate({day, leftOrRight}){
 
@@ -47,7 +47,11 @@ export default function DateWidget(){
     function handleClick(delta){
         setLeftOrRight(delta > 0)
         setTimeout(()=>{
-            dispatch(apiReducer.setShift(day + delta))
+            let d = day + delta
+            if(d > -11 && d <= 0){
+                dispatch(apiReducer.setShift(d))
+                dispatch(detailsReducer.setShowDetails(false))
+            }
         }, 0)
     }
 

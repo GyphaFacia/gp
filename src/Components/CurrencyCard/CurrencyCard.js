@@ -1,7 +1,7 @@
 import React from 'react'
 import style from './style.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import {tooltipReducer} from 'Reducers'
+import {tooltipReducer, detailsReducer} from 'Reducers'
 import {FaSortDown, FaSortUp} from 'react-icons/fa'
 
 function TooltipWrapper(props){
@@ -101,6 +101,7 @@ function HoveringWrapper(props){
 }
 
 export default function CurrencyCard(props){
+    const dispatch = useDispatch()
     const {viewMode} = useSelector(store => store.view)
     const prec = (val, precision = 100) => Math.round(val * precision)/precision
     const data = props.data
@@ -120,6 +121,11 @@ export default function CurrencyCard(props){
         return classList.join(' ')
     }
 
+    function handleCardClick(){
+        dispatch(detailsReducer.setShowDetails(true))
+        dispatch(detailsReducer.setDetailsItem(props.data))
+    }
+
     return (
         <TooltipWrapper
         data = {data}
@@ -127,6 +133,7 @@ export default function CurrencyCard(props){
         <HoveringWrapper>
         <div
         className = {getClassName()}
+        onClick = {handleCardClick}
         >
             <span
             className = {style.CurrencyCardCode}
