@@ -43,6 +43,28 @@ export const desktopLayout = {
     $fontsize9: '50px',   $fontsize9r: '58px', 
 }
 
+export const mobileLayout = {
+    $offset1: '3px',      $offset1r: '4px',
+    $offset2: '5px',      $offset2r: '7px',
+    $offset3: '10px',     $offset3r: '14px',
+    $offset4: '16px',     $offset4r: '20px',
+    $offset5: '24px',     $offset5r: '28px',
+    $offset6: '32px',     $offset6r: '40px',
+    $offset7: '48px',     $offset7r: '56px',
+    $offset8: '64px',     $offset8r: '72px',
+    $offset9: '80px',     $offset9r: '96px',
+    
+    $fontsize1: '10px',   $fontsize1r: '11px', 
+    $fontsize2: '12px',   $fontsize2r: '13px', 
+    $fontsize3: '14px',   $fontsize3r: '15px', 
+    $fontsize4: '16px',   $fontsize4r: '18px', 
+    $fontsize5: '20px',   $fontsize5r: '22px', 
+    $fontsize6: '24px',   $fontsize6r: '26px', 
+    $fontsize7: '28px',   $fontsize7r: '30px', 
+    $fontsize8: '32px',   $fontsize8r: '36px', 
+    $fontsize9: '40px',   $fontsize9r: '46px', 
+}
+
 export function setTheme(theme){
     const docStyle = document.documentElement.style
     Object.keys(theme).forEach(varName => {
@@ -50,8 +72,14 @@ export function setTheme(theme){
     })
 }
 
-setTheme(desktopLayout)
+if(window.matchMedia('(max-width: 600px)')){
+    setTheme(mobileLayout)
+}
+else{
+    setTheme(desktopLayout)
+}
 setTheme(darkTheme)
+
 
 
 

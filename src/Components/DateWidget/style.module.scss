@@ -14,7 +14,7 @@
     }
 
     &Button{
-        @include rect($offset5);
+        @include rect(35px);
         @include flex;
         @include circle;
         background: none;

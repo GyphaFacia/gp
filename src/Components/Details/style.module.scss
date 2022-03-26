@@ -53,6 +53,11 @@
             width: 100%;
             @include flexB;
 
+            @media only screen and (max-width: 600px){
+                margin: 0;
+            }
+
+
             & i{
                 padding-left: $offset3;
             }
@@ -68,5 +73,10 @@
                 margin-left: $offset9;
             }
         }
+    }
+
+    @media only screen and (max-width: 600px){
+        min-width: 33vw;
+        max-width: 33vw;
     }
 }

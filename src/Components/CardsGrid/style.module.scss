@@ -12,6 +12,11 @@
     @include flexV;
     @include circle;
     font-size: $fontsize9;
+    text-align: center;
+    @media only screen and (max-width: 600px){
+        font-size: $fontsize6;
+    }
+
 
     &Btn{
         @include circle;

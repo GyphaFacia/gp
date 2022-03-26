@@ -121,8 +121,8 @@ export default function Details(){
             }}
             animate = {{
                 x: 0,
-                maxWidth: '33vw',
-                minWidth: '33vw',
+                maxWidth: window.matchMedia('(max-width: 600px)') ? '100vw' : '33vw',
+                minWidth: window.matchMedia('(max-width: 600px)') ? '100vw' : '33vw',
             }}
             transition = {{
                 ease: "linear",
