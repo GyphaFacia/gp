@@ -11,7 +11,7 @@ import {apiReducer} from 'Reducers'
 import { useDispatch, useSelector } from 'react-redux';
 import CardsGrid from './Components/CardsGrid/CardsGrid'
 
-import {dateFormat, getStoredData} from 'API'
+import {dateFormat, getStoredData, fetchApi} from 'API'
 
 function App() {
     const dispatch = useDispatch()
@@ -23,7 +23,6 @@ function App() {
                 val: await getStoredData(i)
             }))
         }
-        
     }, [])
 
     return (

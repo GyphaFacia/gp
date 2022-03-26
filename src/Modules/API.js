@@ -16,12 +16,12 @@ export function readStorage(shift){
 export async function writeStorage(shift){
     try {
         const data = await fetchApi(shift)
-        localStorage.setItem(dateFormat(), JSON.stringify(data))
+        localStorage.setItem(dateFormat(shift), JSON.stringify(data))
         return data    
     } catch (error) {
         console.warn(error)
         const data = {error: 'No data'}
-        localStorage.setItem(dateFormat(), JSON.stringify(data))
+        localStorage.setItem(dateFormat(shift), JSON.stringify(data))
         return data
     }
     
@@ -40,7 +40,8 @@ export function dateFormat(shift = 0){
 export async function fetchApi(shift = 0){
     const API = `https://www.cbr-xml-daily.ru/archive`
     const URL = `${API}/${dateFormat(shift)}/daily_json.js`
-
+    // console.log(shift, URL)
     const {data} = await axios.get(URL)
+    // console.log(data)
     return data
 }
