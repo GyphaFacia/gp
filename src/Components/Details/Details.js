@@ -4,7 +4,8 @@ import style from './style.module.scss'
 import { motion, AnimatePresence } from 'framer-motion'
 import CurrencyCard from '../CurrencyCard/CurrencyCard'
 import {FaSortDown, FaSortUp} from 'react-icons/fa'
-import {detailsReducer} from 'Reducers'
+import {detailsReducer, tooltipReducer} from 'Reducers'
+import {TooltipWrapper} from '../CurrencyCard/CurrencyCard'
 
 function Pointer({prev, cur}){
     const Arrow = cur > prev ? FaSortDown : FaSortUp
@@ -23,6 +24,22 @@ function Pointer({prev, cur}){
 }
 
 function TableLine({line}){
+    const dispatch = useDispatch()
+
+    function handleMouseEnter(){
+        dispatch(tooltipReducer.setTooltip('Курс ЦБ РФ на данную дату не установлен'))
+        dispatch(tooltipReducer.setVisible(true))
+    }
+
+    function handleMouseMove(e){
+        const {clientX, clientY} = e
+        dispatch(tooltipReducer.setPos({x: clientX, y: clientY}))
+    }
+
+    function handleMouseLeave(){
+        dispatch(tooltipReducer.setVisible(false))
+    }
+
     return (
         <div
         className = {style.DetailsTableLine}
@@ -43,6 +60,9 @@ function TableLine({line}){
             :
             <span
             className = {style.DetailsTableLineNoData}
+            onMouseEnter = {handleMouseEnter}
+            onMouseMove = {handleMouseMove}
+            onMouseLeave = {handleMouseLeave}
             >-</span>
             }            
         </div>

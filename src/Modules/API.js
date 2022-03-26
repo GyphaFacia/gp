@@ -2,7 +2,7 @@ import axios from "axios"
 
 // API просит не спамить запросами, поскольку данные обновляются
 // не чаще раза в день. Будем уважать их просьбу. Сохраним запросы
-// к API в storage.1
+// к API в storage.
 export async function getStoredData(shift){
     return readStorage(shift) ?? await writeStorage(shift)
 }
