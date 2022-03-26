@@ -106,7 +106,7 @@ export default function Details(){
             }}
             transition = {{
                 ease: "linear",
-                duration: 0.1,
+                duration: 0.05,
             }}
             exit = {{
                 x: '-50vw',
