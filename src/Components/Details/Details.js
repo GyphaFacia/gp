@@ -121,8 +121,8 @@ export default function Details(){
             }}
             animate = {{
                 x: 0,
-                maxWidth: window.matchMedia('(max-width: 600px)') ? '100vw' : '33vw',
-                minWidth: window.matchMedia('(max-width: 600px)') ? '100vw' : '33vw',
+                maxWidth: matchMedia('(max-width: 600px)').matches ? '100vw' : '33vw',
+                minWidth: matchMedia('(max-width: 600px)').matches ? '100vw' : '33vw',
             }}
             transition = {{
                 ease: "linear",
@@ -134,10 +134,11 @@ export default function Details(){
                 minWidth: 0,
             }}
             >
+                {!matchMedia('(max-width: 600px)').matches &&
                 <CurrencyCard
                 data = {detailsItem}
                 viewMode = 'grid'
-                />
+                />}
 
                 <div
                 className = {style.DetailsFullname}

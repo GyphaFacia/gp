@@ -48,7 +48,7 @@ export const mobileLayout = {
     $offset2: '5px',      $offset2r: '7px',
     $offset3: '10px',     $offset3r: '14px',
     $offset4: '16px',     $offset4r: '20px',
-    $offset5: '24px',     $offset5r: '28px',
+    $offset5: '24px',     $offset5r: '10px',
     $offset6: '32px',     $offset6r: '40px',
     $offset7: '48px',     $offset7r: '56px',
     $offset8: '64px',     $offset8r: '72px',
@@ -72,7 +72,7 @@ export function setTheme(theme){
     })
 }
 
-if(window.matchMedia('(max-width: 600px)')){
+if(matchMedia('(max-width: 600px)').matches){
     setTheme(mobileLayout)
 }
 else{

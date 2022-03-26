@@ -78,5 +78,23 @@
     @media only screen and (max-width: 600px){
         min-width: 33vw;
         max-width: 33vw;
+
+        padding-top: $offset9;
+
+        &CloseBtn{
+            left: 50%;
+            top: 0%;
+
+            @include rect($offset7);
+
+            transform: translate(-50%, 0%);
+            &:hover{
+                transform: translate(-50%, 0%) scale(1.1);
+            }
+            &:active{
+                transform: translate(-50%, 0%) scale(0.9);
+            }
+        }
+
     }
 }

@@ -11,4 +11,8 @@
     z-index: 1000;
     box-shadow: 0 0 5px 0 $color2a;
     white-space: nowrap;
+
+    @media only screen and (max-width: 600px){
+        display: none;
+    }
 }

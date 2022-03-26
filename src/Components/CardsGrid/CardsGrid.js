@@ -78,7 +78,7 @@ export default function CardsGrid(){
                         delay: i/25,
                     }}
                     style = {{
-                        margin: viewMode == 'grid' ? 'var(--offset5)' : 'var(--offset2)'
+                        margin: viewMode == 'grid' ? 'var(--offset5r)' : 'var(--offset2)'
                     }}
                     >
                         <CurrencyCard
