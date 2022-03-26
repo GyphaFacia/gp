@@ -116,6 +116,7 @@ export default function Details(){
             >
                 <CurrencyCard
                 data = {detailsItem}
+                viewMode = 'grid'
                 />
 
                 <div

@@ -115,7 +115,7 @@ export default function CurrencyCard(props){
 
     function getClassName(){
         const classList = [style.CurrencyCard]
-        if(viewMode != 'grid'){
+        if(viewMode != 'grid' && props.viewMode != 'grid'){
             classList.push(style.CurrencyCardWide)
         }
         return classList.join(' ')

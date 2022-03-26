@@ -48,7 +48,6 @@
 
     &Table{
         @include flexV;
-        width: 100%;
         &Line{
             margin: $offset2 0;
             width: 100%;
@@ -66,6 +65,7 @@
 
             &Value{
                 @include flex;
+                margin-left: $offset9;
             }
         }
     }
