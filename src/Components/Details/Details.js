@@ -8,14 +8,14 @@ import {detailsReducer, tooltipReducer} from 'Reducers'
 import {TooltipWrapper} from '../CurrencyCard/CurrencyCard'
 
 function Pointer({prev, cur}){
-    const Arrow = cur > prev ? FaSortDown : FaSortUp
+    const Arrow = cur < prev ? FaSortDown : FaSortUp
 
     return (
         <>
         <b>{cur}</b>
         <Arrow
         style = {{
-            transform: `translateY(${cur > prev ? -15 : 30}%)`,
+            transform: `translateY(${cur < prev ? -15 : 30}%)`,
             marginLeft: '5px',
         }}
         />

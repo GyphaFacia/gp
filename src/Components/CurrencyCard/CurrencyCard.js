@@ -111,7 +111,7 @@ export default function CurrencyCard(props){
         return prec(res)
     }
 
-    const GrowOrFall = data.Value < data.Previous ? FaSortUp : FaSortDown
+    const GrowOrFall = data.Value > data.Previous ? FaSortUp : FaSortDown
 
     function getClassName(){
         const classList = [style.CurrencyCard]
@@ -146,7 +146,7 @@ export default function CurrencyCard(props){
             >
                 <GrowOrFall
                 style = {{
-                    transform: `translateY(${data.Value > data.Previous ? -15 : 30}%)`
+                    transform: `translateY(${data.Value < data.Previous ? -15 : 30}%)`
                 }}
                 />
                 {`${calcGrowth()}`.replace('-', '')}%
