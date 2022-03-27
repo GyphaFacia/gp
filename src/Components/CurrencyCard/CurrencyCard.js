@@ -146,7 +146,8 @@ export default function CurrencyCard(props){
             >
                 <GrowOrFall
                 style = {{
-                    transform: `translateY(${data.Value < data.Previous ? -15 : 30}%)`
+                    transform: `translateY(${data.Value < data.Previous ? -15 : 30}%)`,
+                    color: data.Value < data.Previous ? '#f00' : '#0f0'
                 }}
                 />
                 {`${calcGrowth()}`.replace('-', '')}%

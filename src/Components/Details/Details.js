@@ -16,6 +16,7 @@ function Pointer({prev, cur}){
         <Arrow
         style = {{
             transform: `translateY(${cur < prev ? -15 : 30}%)`,
+            color: cur < prev ? '#f00' : '#0f0',
             marginLeft: '5px',
         }}
         />
