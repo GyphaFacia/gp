@@ -18,7 +18,7 @@
     }
 
 
-    &Btn{
+    &Btn{        
         @include circle;
         padding: $offset3r;
         margin-top: $offset9;
@@ -40,5 +40,6 @@
         &:hover{
             border-color: $color2a;
         }
+        background-color: $color1a;
     }
 }

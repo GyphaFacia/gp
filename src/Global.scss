@@ -16,6 +16,11 @@ body {
     font-size: $fontsize3;
     
     overflow: hidden;
+
+    $c2: fade-out(hsl(25, 5%, 10%), 0.5);
+    background: 
+    radial-gradient(circle at center, $c2, $c2),
+    url("./Noise.svg");
 }
 
 .App{
@@ -31,6 +36,7 @@ body {
     }
 
     &-content{
+        background-color: $color1a;
         position: fixed;
         top: 0;
         left: 0;
