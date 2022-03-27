@@ -59,13 +59,32 @@ export default function CardsGrid(){
         return data[dateFormat(shift)]?.Valute ?? false
     }
 
+    sortCurrentData()
+
+    function sortCurrentData(){
+        if(!getCurrentData()) return false
+        const importants = ['USD', 'EUR', 'CNY', 'CHF', 'GBP', 'HKD']
+        
+        let unsorted = Object.keys(getCurrentData())
+        .sort((a, b) => {
+            if(a > b) return 1
+            if(a < b) return -1
+            if(a == b) return 0
+        }).filter(
+            e => !importants.includes(e)
+        )
+        unsorted = [...importants, ...unsorted].map(e => getCurrentData()[e])
+
+        return unsorted
+    }
+
     return (
         <main
         className = {style.CardsGrid}
         >
             {getCurrentData()
             ?
-                Object.keys(getCurrentData()).map((e, i)=>(
+                Object.keys(sortCurrentData()).map((e, i)=>(
                     <motion.div
                     key = {e}
                     initial = {{
@@ -84,7 +103,7 @@ export default function CardsGrid(){
                     }}
                     >
                         <CurrencyCard
-                        data = {getCurrentData()[e]}
+                        data = {sortCurrentData()[e]}
                         />
                     </motion.div>
                 ))
