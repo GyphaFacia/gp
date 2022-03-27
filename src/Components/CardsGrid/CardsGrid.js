@@ -11,10 +11,12 @@ function ApiError(){
     const {data, shift} = useSelector(store => store.api)
 
     function getClosestDate(){
-        let best = 0
+        let best = -1
         for(let i = -10; i <= 0; i++){
-            let d = data[dateFormat(i)]?.Valute
-            if(d && Math.abs(shift - best) > Math.abs(shift - i)){
+            const dateI = data[dateFormat(i)]
+            const exists = dateI && !dateI.hasOwnProperty('error')
+            const delta = Math.abs(shift - best) > Math.abs(shift - i)
+            if(exists && delta){
                 best = i
             }
         }
